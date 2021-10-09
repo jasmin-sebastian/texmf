@@ -1,0 +1,55 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%																							%%%
+%%%										myPaper MANUAL										%%%
+%%%																							%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\documentclass{myReport}
+
+\title{\texttt{myPaper}-Manual}
+\author{Jasmin Sebastian}
+\short{Die Klasse \texttt{myPaper} stellt ein Layout zum Setzen von Hausarbeiten zur Verfügung. Insbesondere wird eine Titelseite erstellt und es werden einige Abkürzungen und zusätzlichen Befehle zur Verfügung gestellt. Um die Präambel im Dokument möglichst kurz zu gestalten werden einige wichtige Pakete bereits geladen und Einstellungen z.B. für Codeumgebungen vorgenommen.}
+
+
+\begin{document}
+
+%\tableofcontents
+%\newpage
+
+\textcolor{red}{To fix: Farbe Literaturlinks, Fußnoteneinrückung, Abbildungen zentrieren, Biburl}
+
+\section{Optionenauswahl}
+
+Die \texttt{myPaper}-Klasse bietet einige Möglichkeiten zur Optionenauswahl direkt beim Einbinden der Klasse, nach dem Schema \lstinline|\documentclass[option]{myAssignment}|. Standardmäßig wird Schriftgröße \emph{12} genutzt, dies kann hier geändert werden. Außerdem ist Deutsch als Sprache eingestellt, mit der Option \emph{english} werden Überschriften, Titelseite, etc. im Dokument auf Englisch umgestellt. Um einen zweizeiligen Titel auf der Titelseite zu erzeugen kann die Option \emph{longtitle} benutzt werden, das Einbinden funktioniert dann über eine Variable, wie im nächsten Kapitel beschrieben wird. Die Koma-Option \emph{twoside} wurde deaktiviert und die Option \emph{twocolumn} wurde umdefiniert, sodass die Titelseite nicht betroffen ist. Ansonsten können alle Koma-Optionen wie gewohnt eingebunden und genutzt werden.
+
+
+\section{Layout}
+
+Um ein angepasstes Layout für Hausarbeiten zu bieten, wird eine Titelseite mit wichtigen Informationen erstellt. Dazu können der Titel der Arbeit, sowie Untertitel bzw. ein zweizeiliger Titel über die Variablen \lstinline|\title{Titel}, \subtitle{Untertitel}, \longtitle{erste Zeile}{zweite Zeile}| eingestellt werden. Um den langen Titel nutzen zu können muss beim Einbinden der Dokumentklasse die Option \emph{longtitle} geladen werden. Außerdem können Namen des Autors, sowie des Dozenten, das Semester, die Matrikelnmmer, die Mail-Adresse, der Studiengang, das Datum der Abgabe und bis zu drei zusätzlichen Attributen vergeben werden. Dies erfolgt über die Variablen \lstinline|\author{Autor}, \prof{Dozent}, \term{Semester}, \matrikel{Matrikelnummer}, \mail{Mail}, \subject{Studiengang}{Semesteranzahl}, \date{Datum}, \zusatzi{Attribut}{Wert}, \zusatzii{Attribut}{Wert}, \zusatziii{Attribut}{Wert}|. Sobald entsprechende Daten vorhanden sind wird ein Inhaltsverzeichnis, sowie ein Literaturverzeichnis automatisch erstellt. Das heißt für ein Inhaltsverzeichnis müssen keine weiteren Befehle benutzt werden, sobald über \lstinline|\section{Titel}| Überschriften vergeben werden erscheinen diese im Inhaltsverzeichnis. Für das Literaturverzeichnis muss natürlich noch ein \texttt{.bib}-file über den Befehl \lstinline|\bibliography{bib-file}| eingebunden werden. Werden nun im Text Zitate vermerkt erscheinen die Quellen automatisch im Literaturverzeichnis.
+
+
+\begin{itemize}
+	\item bibliography toc
+	\item Schriftart, zeilenabstand ränder
+	\item title, subtitle, longtitle, author prof term matrikel, mail subject date zusatz plainheader
+	\item header für inhalt und bib
+\end{itemize}
+
+
+\section{Einstellungen und zusätzliche Befehle}
+
+Um Text zu Unterstreichen sollte anstelle von \lstinline|\underline{text}|, entweder \lstinline|\uline{text}| oder \lstinline|\ul{text}| benutzt werden, da hier der Abstand zwischen Text und Unterstrich angepasst wurde. Um Code zu setzen kann die \texttt{lstlisting}-Umgebung benutzt werden, hierbei wurden schon einige Layouteinstellungen vorgenommen. So können nun auch \LaTeX-Befehle in der \texttt{lstlisting}-Umgebung ausgeführt werden, indem dieser Code escaped wird. Dies funktioniert über die escape-Sequenze \lstinline|(/*text*/)|.
+
+\subsection{Mathesymbole und -umgebungen}
+
+Um das Arbeiten mit Mathesymbolen zu Vereinfachen wurden hier einige neue Befehle definiert um z.B. die Zahlenmengen $\N, \Z, \Q, \R, \C$, sowie für Wahrscheinlichkeiten die Symbole $\F, \P, \one$ über die Befehle \lstinline|\N, \Z, \Q, \R, \C, \F, \P, \one| darzustellen. Der Befehl \lstinline|\equnder{equation}{subscript}| erzeugt ein vertikales Gleichzeichen unter einer Formel und das gegebene Ergebnis. Bei der \texttt{align*}-Umgebung haben die Formeln im Gegensatz zur \texttt{align}-Umgebung keine Nummerierung, durch den Befehl \lstinline|\numberthis| kann hier für eine einzelne Zeile eine Nummer hinzugefügt werden. Außerdem werden Umgebungen für Definitionen, Sätze, Lemmata und Beispiele definiert, diese können über \lstinline|\begin{mydef / satz / lemma / bsp} text \end{mydef / satz / lemma / bsp}| aufgerufen werden. Die zugehörigen Umgebung ohne Nummerierung können genauso mit einem * am Ende aufgerufen werden. Es können auch noch weiter Umgebungen über den Befehl \lstinline|\newtheorem{name}[mydef]{Theoremname}| definiert werden. Der Teil \lstinline|[mydef]| ist hier notwendig um die gleiche Nummerierung beizubehalten. Es wurde das Paket \texttt{amsopn} eingebunden um einige Matheoperatoren zur Verfügung zu stellen, so kann z.B. \lstinline|\max()| im Mathemodus aufgerufen werden und wird dabei aufrecht geschrieben. Zusätzlich wurden \lstinline|\argmax() und \argmin()| definiert. Eigene Matheoperatoren können außerdem über \lstinline|\DeclareMathOperator{\op}{operator}| hinzugefügt werden.
+
+\subsection{Spaltentypen für Tabellen}
+
+Da Tabellenspalten die eine feste Breite haben sollen nur mit Blocksatz angeboten werden, wurden den bereits existierenden Spaltentypen noch drei weitere hinzugefügt. Diese können einfach über die Buchstaben \emph{R} (rechtsbündige Spalte mit fester Breite), \emph{L} (linksbündige Spalte mit fester Breite) und \emph{C} (zentrierte Spalte mit fester Breite) eingebunden werden. Außerdem bietet der Spaltentyp \emph{M} die Möglichkeit ganze Spalten im Mathemodus zu setzen.
+
+\subsection{Abkürzungen und weitere Befehle}
+
+Um Schreibarbeit zu sparen wurden für den Gebrauch im Textmodus die beiden Pfeile \ra und \Ra durch die Befehle \lstinline|\ra| und \lstinline|\Ra| abgekürzt. Der Befehl \lstinline|\nix| fügt ein unsichtbares Zeichen an, was sinnvoll sein kann wenn man einen Abstand mit \lstinline|\vspace{length}| erzeugen will, aber in der Zeile noch nichts steht.
+
+
+\end{document}

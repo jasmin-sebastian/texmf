@@ -1,0 +1,45 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%																							%%%
+%%%									myAssignment MANUAL										%%%
+%%%																							%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\documentclass{myReport}
+
+\title{\texttt{myAssignment}-Manual}
+\author{Jasmin Sebastian}
+\short{Die Klasse \texttt{myAssignment} stellt ein Layout zum Setzen von Übungszetteln zur Verfügung. Insbesondere wird ein vorgefertigter Header erstellt und es werden einige Abkürzungen und zusätzlichen Befehle zur Verfügung gestellt. Um die Präambel im Dokument möglichst kurz zu gestalten werden einige wichtige Pakete bereits geladen und Einstellungen z.B. für Codeumgebungen vorgenommen.}
+
+
+\begin{document}
+
+%\tableofcontents
+%\newpage
+
+\section{Optionenauswahl}
+
+Die \texttt{myAssignment}-Klasse bietet einige Möglichkeiten zur Optionenauswahl direkt beim Einbinden der Klasse, nach dem Schema \lstinline|\documentclass[option]{myAssignment}|. Standardmäßig wird Schriftgröße \emph{12} genutzt, dies kann hier geändert werden. Außerdem ist Deutsch als Sprache eingestellt, mit der Option \emph{english} werden Überschriften etc. im Dokument auf Englisch umgestellt. Die Koma-Optionen \emph{twocolumn} und \emph{twoside} sind deaktiviert, ansonsten können alle Koma-Optionen wie gewohnt eingebunden und genutzt werden.
+
+
+\section{Layout}
+
+Um ein angepasstes Layout für Übungszettel zu bieten wird ein Header mit wichtigen Informationen erstellt. Dazu können der Name der Vorlesung, die Zettelpartner, der Tutor, die Zettelnummer sowie das Semester über die Variablen \lstinline|\title{Vorlesung}, \author{Zettelpartner1, Zettelpartner2}, \tutor{Tutor}, \nr{Zettelnummer}, \term{Semester}| eingestellt werden. Außerdem gibt es die Möglichkeit eine Punktetabelle für ein bis zehn Aufgaben auszugeben. Standardmäßig sind hier vier Aufgaben eingestellt, dies kann jedoch über den Befehl \lstinline|\tasks{#Aufgaben}| geändert werden. Falls keine Nummer für die Anzahl der Aufgaben übergeben wird verschwindet die Tabelle, ein größerer Abstand bleibt allerdings vorhanden, dies kann verhindert werden, indem der Befehl mit dem Keyword \lstinline|none|, anstelle einer Zahl aufgerufen wird. Die Benennung der Überschriften wurde bereits auf \emph{Aufgabe X} geändert, falls dies als Überschrift ausreichend ist, kann die Klammer bei \lstinline|\section{}| einfach leer gelassen werden, ansonsten kann natürlich noch ein Überschrift hinzugefügt werden. Die \texttt{enumerate}-Umgebung wurde ebenfalls so angepasst, dass auf erster Ebene Kleinbuchstaben benutzt werden, sodass hierdurch Teilaufgaben gesetzt werden können.
+
+
+\section{Einstellungen und zusätzliche Befehle}
+
+Um Text zu Unterstreichen sollte anstelle von \lstinline|\underline{text}|, entweder \lstinline|\uline{text}| oder \lstinline|\ul{text}| benutzt werden, da hier der Abstand zwischen Text und Unterstrich angepasst wurde. Um Code zu setzen kann die \texttt{lstlisting}-Umgebung benutzt werden, hierbei wurden schon einige Layouteinstellungen vorgenommen. So können nun auch \LaTeX-Befehle in der \texttt{lstlisting}-Umgebung ausgeführt werden, indem dieser Code escaped wird. Dies funktioniert über die escape-Sequenze \lstinline|(/*text*/)|.
+
+\subsection{Mathesymbole und -umgebungen}
+
+Um das Arbeiten mit Mathesymbolen zu Vereinfachen wurden hier einige neue Befehle definiert um z.B. die Zahlenmengen $\N, \Z, \Q, \R, \C$, sowie für Wahrscheinlichkeiten die Symbole $\F, \P, \one$ über die Befehle \lstinline|\N, \Z, \Q, \R, \C, \F, \P, \one| darzustellen. Der Befehl \lstinline|\equnder{equation}{subscript}| erzeugt ein vertikales Gleichzeichen unter einer Formel und das gegebene Ergebnis. Bei der \texttt{align*}-Umgebung haben die Formeln im Gegensatz zur \texttt{align}-Umgebung keine Nummerierung, durch den Befehl \lstinline|\numberthis| kann hier für eine einzelne Zeile eine Nummer hinzugefügt werden. Außerdem werden Umgebungen für Definitionen, Sätze, Lemmata und Beispiele definiert, diese können über \lstinline|\begin{mydef / satz / lemma / bsp} text \end{mydef / satz / lemma / bsp}| aufgerufen werden. Die zugehörigen Umgebung ohne Nummerierung können genauso mit einem * am Ende aufgerufen werden. Es können auch noch weiter Umgebungen über den Befehl \lstinline|\newtheorem{name}[mydef]{Theoremname}| definiert werden. Der Teil \lstinline|[mydef]| ist hier notwendig um die gleiche Nummerierung beizubehalten. Es wurde das Paket \texttt{amsopn} eingebunden um einige Matheoperatoren zur Verfügung zu stellen, so kann z.B. \lstinline|\max()| im Mathemodus aufgerufen werden und wird dabei aufrecht geschrieben. Zusätzlich wurden \lstinline|\argmax() und \argmin()| definiert. Eigene Matheoperatoren können außerdem über \lstinline|\DeclareMathOperator{\op}{operator}| hinzugefügt werden.
+
+\subsection{Spaltentypen für Tabellen}
+
+Da Tabellenspalten die eine feste Breite haben sollen nur mit Blocksatz angeboten werden, wurden den bereits existierenden Spaltentypen noch drei weitere hinzugefügt. Diese können einfach über die Buchstaben \emph{R} (rechtsbündige Spalte mit fester Breite), \emph{L} (linksbündige Spalte mit fester Breite) und \emph{C} (zentrierte Spalte mit fester Breite) eingebunden werden. Außerdem bietet der Spaltentyp \emph{M} die Möglichkeit ganze Spalten im Mathemodus zu setzen.
+
+\subsection{Abkürzungen und weitere Befehle}
+
+Um Schreibarbeit zu sparen wurden für den Gebrauch im Textmodus die beiden Pfeile \ra und \Ra durch die Befehle \lstinline|\ra| und \lstinline|\Ra| abgekürzt. Der Befehl \lstinline|\nix| fügt ein unsichtbares Zeichen an, was sinnvoll sein kann wenn man einen Abstand mit \lstinline|\vspace{length}| erzeugen will, aber in der Zeile noch nichts steht.
+
+
+\end{document}
